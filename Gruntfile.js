@@ -375,6 +375,7 @@ module.exports = function(grunt) {
                     '<%= vendor_files.included_js %>',
                     '<%= build_dir %>/assets/application.css',
                     '<%= build_dir %>/assets/vendor.css',
+                    '!<%= build_dir %>/src/main.js',
                     '!<%= build_dir %>/main.js'
                 ],
                 deployment: false
@@ -572,13 +573,9 @@ module.exports = function(grunt) {
         'copy:build_vendorjs',
         'copy:build_external',
         'copy:build_htaccess',
+        'copy:electron_package',
         'ngAnnotate',
         'babel',
         'index:build'
-    ]);
-
-    grunt.registerTask('build:app', [
-        'build',
-        'copy:electron_package',
     ]);
 };
