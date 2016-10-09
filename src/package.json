@@ -1,0 +1,8 @@
+{
+  "name": "charge-app",
+  "version": "0.1.0",
+  "description": "Proton mail desktop client",
+  "main": "main.js",
+  "author": "Sergey Tatarintsev <sergey@tatarintsev.me> (https://github.com/SevInf)",
+  "license": "MIT"
+}

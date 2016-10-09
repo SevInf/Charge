@@ -236,6 +236,15 @@ module.exports = function(grunt) {
                     nonull: true
                 }]
             },
+            electron_package: {
+                files: [{
+                    src: ["package.json", "main.js"],
+                    filter: "isFile",
+                    expand: true,
+                    dest: "./<%= build_dir %>/",
+                    cwd: "./src"
+                }]
+            }
         },
 
         sass: {
@@ -365,7 +374,8 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/src/**/*.js',
                     '<%= vendor_files.included_js %>',
                     '<%= build_dir %>/assets/application.css',
-                    '<%= build_dir %>/assets/vendor.css'
+                    '<%= build_dir %>/assets/vendor.css',
+                    '!<%= build_dir %>/main.js'
                 ],
                 deployment: false
             },
@@ -503,6 +513,19 @@ module.exports = function(grunt) {
                     'src/app/translations.js': ['po/*.po']
                 }
             }
+        },
+
+        electron: {
+            mac: {
+                options: {
+                    name: 'Charge',
+                    out: 'dist',
+                    dir: '<%= build_dir %>',
+                    version: '<%= pkg.version %>',
+                    platform: 'darwin',
+                    arch: 'x64',
+                }
+            }
         }
     };
 
@@ -552,5 +575,10 @@ module.exports = function(grunt) {
         'ngAnnotate',
         'babel',
         'index:build'
+    ]);
+
+    grunt.registerTask('build:app', [
+        'build',
+        'copy:electron_package',
     ]);
 };
