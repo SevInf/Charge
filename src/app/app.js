@@ -80,6 +80,7 @@ angular.module('proton', [
     'proton.desktopNotifications',
     'proton.embedded',
     'proton.service.message',
+    'charge.iconBadge',
 
     // Directives
     'proton.message',
@@ -204,7 +205,8 @@ angular.module('proton', [
     networkActivityTracker,
     CONSTANTS,
     notify,
-    tools
+    tools,
+    iconBadge,
 ) {
     angular.element($window).bind('load', function() {
         // Enable FastClick
@@ -272,6 +274,8 @@ angular.module('proton', [
         position: 'center',
         maximumOpen: 5
     });
+
+    iconBadge.enableIconBadge();
 })
 
 //
